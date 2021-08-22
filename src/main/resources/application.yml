@@ -1,0 +1,3 @@
+app:
+  endpoints:
+    devices: https://api2.nicehash.com/main/api/v2/public/profcalc/devices

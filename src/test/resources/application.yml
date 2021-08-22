@@ -1,0 +1,10 @@
+app:
+  endpoints:
+    devices: https://api2.nicehash.com/main/api/v2/public/profcalc/devices
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
