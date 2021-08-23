@@ -5,6 +5,7 @@ import ar.com.frupp.gpuroi.model.DeviceJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DeviceMapper {
@@ -20,7 +21,9 @@ public class DeviceMapper {
 
         logger.debug("Entity generated: {}", entity);
 
-        var speeds = model.getSpeeds().entrySet().stream().map(
+        var speeds = model.getSpeeds().entrySet().stream().filter(
+                map -> !Objects.equals(map.getValue(), "0")
+        ).map(
                 map -> DeviceSpeedMapper.toEntity(map.getKey(), map.getValue(), entity)
         ).collect(Collectors.toSet());
 
