@@ -3,12 +3,13 @@ package ar.com.frupp.gpuroi.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Getter @Setter
+@Getter @Setter @ToString
 public class DeviceJson {
     private static final String GPU_CATEGORY = "GPU";
 
