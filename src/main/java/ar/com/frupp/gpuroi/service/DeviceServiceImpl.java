@@ -4,12 +4,13 @@ import ar.com.frupp.gpuroi.entity.Device;
 import ar.com.frupp.gpuroi.interactor.NiceHashInteractor;
 import ar.com.frupp.gpuroi.mapper.DeviceMapper;
 import ar.com.frupp.gpuroi.model.DeviceJson;
+import ar.com.frupp.gpuroi.model.Paginated;
 import ar.com.frupp.gpuroi.repository.DeviceRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class DeviceServiceImpl implements DeviceService {
 
     private static final Integer PAGE_SIZE = 10;
+    private static final String SORT_BY_COLUMN = "paying";
 
     private final Logger logger = LoggerFactory.getLogger(DeviceServiceImpl.class);
 
@@ -25,9 +27,15 @@ public class DeviceServiceImpl implements DeviceService {
     private final NiceHashInteractor niceHashInteractor;
 
     @Override
-    public Page<Device> findAll(Integer pageNumber) {
-        var page = PageRequest.of(pageNumber, PAGE_SIZE);
-        return null;
+    public Paginated<DeviceJson> findAll(Integer pageNumber) {
+        this.logger.info("Finding Devices page {}", pageNumber);
+
+        var sort = Sort.by(Sort.Direction.DESC, SORT_BY_COLUMN);
+        var pageRequest = PageRequest.of(pageNumber, PAGE_SIZE, sort);
+        var page = this.repository.findAll(pageRequest);
+
+        var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
+        return new Paginated<>(page.getNumber(), page.getTotalElements(), jsonList);
     }
 
     @Override

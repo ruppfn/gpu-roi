@@ -1,11 +1,12 @@
 package ar.com.frupp.gpuroi.service;
 
 import ar.com.frupp.gpuroi.entity.Device;
-import org.springframework.data.domain.Page;
+import ar.com.frupp.gpuroi.model.DeviceJson;
+import ar.com.frupp.gpuroi.model.Paginated;
 
 public interface DeviceService {
 
-    Page<Device> findAll(Integer pageNumber);
+    Paginated<DeviceJson> findAll(Integer pageNumber);
 
     void save(Device device);
 
