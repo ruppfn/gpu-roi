@@ -5,6 +5,10 @@ import ar.com.frupp.gpuroi.entity.DeviceSpeed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 public class DeviceSpeedMapper {
 
     private final static Logger logger = LoggerFactory.getLogger(DeviceSpeedMapper.class);
@@ -18,5 +22,13 @@ public class DeviceSpeedMapper {
         logger.debug("Entity generated: {}", entity);
 
         return entity;
+    }
+
+    public static Map<String, String> toModel(Collection<DeviceSpeed> speeds) {
+        var map = new HashMap<String, String>();
+
+        speeds.forEach(s -> map.put(s.getAlgorithm(), s.getSpeed().toString()));
+
+        return map;
     }
 }
