@@ -15,8 +15,7 @@ public class DeviceMapper {
         logger.debug("Mapping DeviceJson to entity. {}", model);
 
         var entity = new Device(
-                model.getId(), model.getName(), model.getPower(),
-                null, model.getPaying()
+                model.getId(), model.getName(), model.getPower(), model.getPaying()
         );
 
         logger.debug("Entity generated: {}", entity);
