@@ -5,3 +5,12 @@ app:
 logging:
   level:
     ar.com.frupp: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/GPU_ROI
+    username: root
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: update
