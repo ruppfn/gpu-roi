@@ -44,4 +44,12 @@ public class Device {
         this.speeds.add(speeds);
     }
 
+    public void setPriceInArs(BigDecimal priceInArs) {
+        this.priceInArs = priceInArs;
+    }
+
+    public void setDaysToROI(BigDecimal daysToROI) {
+        this.daysToROI = daysToROI;
+    }
+
 }
