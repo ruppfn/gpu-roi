@@ -31,6 +31,12 @@ public class Device {
     @Column(name = "PAYING", precision = 10, scale = 8)
     private BigDecimal paying;
 
+    @Column(name = "PRICE_IN_ARS", precision = 8, scale = 0)
+    private BigDecimal priceInArs;
+
+    @Column(name = "DAYS_TO_ROI", precision = 6, scale = 2)
+    private BigDecimal daysToROI;
+
     public void addSpeed(DeviceSpeed speeds) {
         if (this.speeds == null) {
             this.speeds = new HashSet<>();
