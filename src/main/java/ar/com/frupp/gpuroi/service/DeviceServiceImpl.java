@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 @Service @AllArgsConstructor
@@ -36,6 +37,27 @@ public class DeviceServiceImpl implements DeviceService {
 
         var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
         return new Paginated<>(page.getNumber(), page.getTotalElements(), jsonList);
+    }
+
+    @Override
+    public DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs, BigDecimal daysToROI) {
+        this.logger.info("Adding price ({}) and ROI ({}) for Device id {}", priceInArs, daysToROI, deviceId);
+        var optional = this.repository.findById(deviceId);
+
+        if(optional.isEmpty()) {
+            this.logger.info("Device with id {} not found", deviceId);
+            return new DeviceJson();
+        }
+
+        var device = optional.get();
+
+        device.setPriceInArs(priceInArs);
+        device.setDaysToROI(daysToROI);
+        this.repository.save(device);
+
+        this.logger.debug("Price and ROI saved");
+
+        return DeviceMapper.toModel(device);
     }
 
     @Override
