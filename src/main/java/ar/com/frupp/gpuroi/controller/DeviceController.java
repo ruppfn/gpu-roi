@@ -1,11 +1,11 @@
 package ar.com.frupp.gpuroi.controller;
 
-import ar.com.frupp.gpuroi.entity.Device;
+import ar.com.frupp.gpuroi.model.DeviceJson;
+import ar.com.frupp.gpuroi.model.Paginated;
 import ar.com.frupp.gpuroi.service.DeviceService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/devices")
@@ -15,8 +15,8 @@ public class DeviceController {
     private final DeviceService deviceService;
 
     @GetMapping
-    public Collection<Device> getDevices(@RequestParam(required = false, defaultValue = "0") Integer pageNumber) {
-        return null;
+    public Paginated<DeviceJson> getDevices(@RequestParam(required = false, defaultValue = "0") Integer pageNumber) {
+        return this.deviceService.findAll(pageNumber);
     }
 
     @PostMapping
