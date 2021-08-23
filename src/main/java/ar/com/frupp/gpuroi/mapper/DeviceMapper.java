@@ -31,4 +31,16 @@ public class DeviceMapper {
 
         return entity;
     }
+
+    public static DeviceJson toModel(Device entity) {
+        logger.debug("Mapping Device to model. {}", entity);
+
+        var model = new DeviceJson(
+                entity.getId(), entity.getName(), null, entity.getPower(),
+                DeviceSpeedMapper.toModel(entity.getSpeeds()), entity.getPaying(),
+                entity.getPriceInArs(), entity.getDaysToROI()
+        );
+
+        return model;
+    }
 }
