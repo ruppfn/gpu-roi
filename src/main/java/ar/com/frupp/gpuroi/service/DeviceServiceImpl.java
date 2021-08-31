@@ -40,6 +40,18 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
+    public Paginated<DeviceJson> findAllWithoutPrice(Integer pageNumber) {
+        this.logger.info("Finding Devices without price page {}", pageNumber);
+        var sort = Sort.by(Sort.Direction.DESC, SORT_BY_COLUMN);
+        var pageRequest = PageRequest.of(pageNumber, PAGE_SIZE, sort);
+
+        var page = this.repository.findAllByPriceInArsIsNull(pageRequest);
+
+        var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
+        return new Paginated<>(page.getNumber(), page.getTotalElements(), jsonList);
+    }
+
+    @Override
     public DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs, BigDecimal daysToROI) {
         this.logger.info("Adding price ({}) and ROI ({}) for Device id {}", priceInArs, daysToROI, deviceId);
         var optional = this.repository.findById(deviceId);

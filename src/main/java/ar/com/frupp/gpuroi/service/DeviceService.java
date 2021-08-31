@@ -12,6 +12,8 @@ public interface DeviceService {
 
     DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs, BigDecimal daysToROI);
 
+    Paginated<DeviceJson> findAllWithoutPrice(Integer pageNumber);
+
     void save(Device device);
 
     void sync();

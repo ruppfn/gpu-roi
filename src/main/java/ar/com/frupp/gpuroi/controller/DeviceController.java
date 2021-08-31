@@ -20,6 +20,12 @@ public class DeviceController {
         return this.deviceService.findAll(pageNumber);
     }
 
+    @GetMapping("/withoutPrice")
+    public Paginated<DeviceJson> getDevicesWithoutPrice(
+            @RequestParam(required = false, defaultValue = "0") Integer pageNumber) {
+        return this.deviceService.findAllWithoutPrice(pageNumber);
+    }
+
     @PutMapping
     public DeviceJson updatePrice(@RequestBody UpdatePriceRequest updatePriceRequest) {
         return this.deviceService.updatePriceAndROI(
