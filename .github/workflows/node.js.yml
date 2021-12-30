@@ -33,4 +33,4 @@ jobs:
         cache-dependency-path: src/main/js/package-lock.json
     - run: npm ci
     - run: npm run build
-    - run: npm run postbuild
+    - run: npm run add-to-java
