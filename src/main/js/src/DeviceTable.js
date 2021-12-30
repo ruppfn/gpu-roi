@@ -34,11 +34,13 @@ function DeviceTable() {
 
     const columns = [
         {field: "name", headerName: "Name"},
-        {field: "power", headerName: "Power"},
+        {field: "power", headerName: "Power", renderCell: cell => powerFormat(cell) },
         {field: "paying", headerName: "BTC per Day"},
         {field: "priceInArs", headerName: "Price in ARS"},
         {field: "daysToROI", headerName: "Days to ROI"}
     ];
+
+    const powerFormat = row => <div>{row.value}&nbsp;<b>W</b></div>;
 
     return (
         <div style={{ height: '100vh', width: '100%' }}>
