@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.6",
+    "@mui/x-data-grid": "^5.2.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -13,7 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build/static ../resources/static",
+    "build": "react-scripts build && npm run clean-java-resources && npm run move-to-java",
+    "clean-java-resources": "rm -rf ../resources/static/static && rm -f ../resources/templates/index.html",
+    "move-to-java": "mv build/static ../resources/static/static && mv build/index.html ../resources/templates",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
