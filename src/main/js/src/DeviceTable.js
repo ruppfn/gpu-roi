@@ -10,6 +10,13 @@ function DeviceTable() {
     const [devices, setDevices] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
+    const [sortModel, setSortModel] = useState([
+        {
+            field: "paying",
+            sort: "desc"
+        }
+    ]);
+
     const pageSize = 10;
 
     useEffect(() => {
@@ -44,6 +51,7 @@ function DeviceTable() {
                 pageSize={pageSize}
                 page={pageNumber}
                 onPageChange={newPageNumber => setPageNumber(newPageNumber)}
+                sortModel={sortModel}
             />
         </div>
     );
