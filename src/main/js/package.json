@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run postbuild",
+    "build": "react-scripts build",
     "postbuild": "npm run make-java-directories && npm run clean-java-resources && npm run move-to-java",
     "make-java-directories": "mkdir -p ../resources/static/static && mkdir -p ../resources/templates",
     "clean-java-resources": "rm -rf ../resources/static/static && rm -f ../resources/templates/index.html",
