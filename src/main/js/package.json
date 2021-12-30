@@ -18,9 +18,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run clean-java-resources && npm run move-to-java",
+    "build": "react-scripts build",
+    "add-to-java": "npm run make-java-directories && npm run clean-java-resources && npm run move-to-java",
+    "make-java-directories": "mkdir -p ../resources/static/static && mkdir -p ../resources/templates",
     "clean-java-resources": "rm -rf ../resources/static/static && rm -f ../resources/templates/index.html",
-    "move-to-java": "mv build/static ../resources/static/static && mv build/index.html ../resources/templates",
+    "move-to-java": "mv ./build/static ../resources/static/static && mv ./build/index.html ../resources/templates",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

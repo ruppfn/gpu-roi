@@ -10,12 +10,12 @@ function DeviceTable() {
     const [devices, setDevices] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
-    const [sortModel, setSortModel] = useState([
+    const sortModel = [
         {
             field: "paying",
             sort: "desc"
         }
-    ]);
+    ];
 
     const pageSize = 10;
 
@@ -24,13 +24,12 @@ function DeviceTable() {
             params: {pageNumber}
         }).then(response => {
             const data = response.data;
-
+            console.log("Response: {}", data);
             setDevices(data.content);
             setPageNumber(data.pageNumber);
             setTotalElements(data.totalElements);
         });
-        console.log(devices);
-    }, [pageNumber, pageSize]);
+    }, [pageNumber, setDevices, setPageNumber, setTotalElements]);
 
     const columns = [
         {field: "name", headerName: "Name"},
