@@ -8,6 +8,10 @@ on:
     branches: [ master, dev ]
   pull_request:
     branches: [ master, dev ]
+    
+defaults:
+  run:
+    working-directory: src/main/js
 
 jobs:
   build:
@@ -26,5 +30,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm --prefix src/main/js ci
-    - run: npm --prefix src/main/js run build --if-present
+        cache-dependency-path: src/main/js/package-lock.json
+    - run: npm ci
+    - run: npm run build --if-present
