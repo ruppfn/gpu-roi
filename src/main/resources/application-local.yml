@@ -6,7 +6,7 @@ app:
 
 logging:
   level:
-    ar.com.frupp: info
+    ar.com.frupp: debug
     org.hibernate.SQL: error
     org.hibernate.type.descriptor.sql.BasicBinder: error
 
