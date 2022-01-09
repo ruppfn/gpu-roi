@@ -27,7 +27,7 @@ public class DeviceController {
 
     @GetMapping("/withoutPrice")
     public Collection<DeviceJson> getDevicesWithoutPrice() {
-        return this.deviceService.findAllWithoutPrice();
+        return this.deviceService.findAllToUpdatePrice();
     }
 
     @PutMapping

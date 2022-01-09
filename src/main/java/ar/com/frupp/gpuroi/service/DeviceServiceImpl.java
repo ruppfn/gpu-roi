@@ -46,10 +46,10 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public Collection<DeviceJson> findAllWithoutPrice() {
-        this.logger.info("Finding Devices without price");
+    public Collection<DeviceJson> findAllToUpdatePrice() {
+        this.logger.info("Finding Devices to update price");
 
-        var devices = this.repository.findAllByPriceInArsIsNull();
+        var devices = this.repository.findAllWhereLastUpdateWasYesterdayOrOlder();
 
         this.logger.debug("Found {} devices", devices.size());
 
@@ -71,6 +71,7 @@ public class DeviceServiceImpl implements DeviceService {
 
         device.setPriceInArs(priceInArs);
         device.setDaysToROI(roi);
+        device.setLastUpdate();
         this.repository.save(device);
 
         this.logger.debug("Price and ROI saved");

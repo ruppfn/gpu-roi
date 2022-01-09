@@ -13,7 +13,7 @@ public interface DeviceService extends Synchronizable {
 
     DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs);
 
-    Collection<DeviceJson> findAllWithoutPrice();
+    Collection<DeviceJson> findAllToUpdatePrice();
 
     void save(Device device);
 

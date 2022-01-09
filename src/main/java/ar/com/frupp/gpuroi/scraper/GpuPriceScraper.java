@@ -32,7 +32,7 @@ public class GpuPriceScraper {
     }
 
     public void scrape() {
-        var devicesWithoutPrice = this.deviceService.findAllWithoutPrice();
+        var devicesWithoutPrice = this.deviceService.findAllToUpdatePrice();
 
         for (DeviceJson device: devicesWithoutPrice) {
             scrapePrice(device);
