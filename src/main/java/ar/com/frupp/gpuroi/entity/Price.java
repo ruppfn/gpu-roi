@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Entity @Table(name = "PRICES")
 @Getter
-public class Prices {
+public class Price {
 
     public static final String USD_NAME = "USD";
 
