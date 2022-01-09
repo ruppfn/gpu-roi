@@ -8,6 +8,7 @@
   },
   "scripts": {
     "prebuild": "cd ./src/main/js && npm install",
-    "build": "cd ./src/main/js && npm run build"
+    "build": "cd ./src/main/js && npm run build",
+    "add-to-java": "cd ./src/main/js && npm run add-to-java"
   }
 }
