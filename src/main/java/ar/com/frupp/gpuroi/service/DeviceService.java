@@ -6,7 +6,7 @@ import ar.com.frupp.gpuroi.model.Paginated;
 
 import java.math.BigDecimal;
 
-public interface DeviceService {
+public interface DeviceService extends Synchronizable {
 
     Paginated<DeviceJson> findAll(Integer pageNumber);
 
@@ -15,7 +15,5 @@ public interface DeviceService {
     Paginated<DeviceJson> findAllWithoutPrice(Integer pageNumber);
 
     void save(Device device);
-
-    void sync();
 
 }
