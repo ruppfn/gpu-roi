@@ -19,7 +19,7 @@ public class SyncScheduler {
     }
 
     @Scheduled(cron = "@hourly")
-    public void syncUsdPrice() {
+    public void syncPrices() {
         this.priceService.sync();
     }
 }
