@@ -1,5 +1,5 @@
 {
-  "name": "gpu-roi-front",
+  "name": "gpu-roi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
