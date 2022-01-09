@@ -85,6 +85,8 @@ public class DeviceServiceImpl implements DeviceService {
 
         final var profitInArs = device.getPaying().multiply(btcInArs);
 
+        if (profitInArs.intValue() == 0 || priceInArs.intValue() == 0) return new BigDecimal(0);
+
         return priceInArs.divide(profitInArs, 2, RoundingMode.HALF_UP);
     }
 
