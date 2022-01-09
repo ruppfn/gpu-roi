@@ -1,6 +1,7 @@
 package ar.com.frupp.gpuroi.service;
 
 import ar.com.frupp.gpuroi.entity.Price;
+import ar.com.frupp.gpuroi.entity.PriceTypes;
 import ar.com.frupp.gpuroi.interactor.UsdInteractor;
 import ar.com.frupp.gpuroi.repository.PriceRepository;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public Price findUsd() {
         this.logger.info("Finding USD Price");
-        var optional = this.repository.findByName(Price.USD_NAME);
+        var optional = this.repository.findByType(PriceTypes.USD);
 
         if (optional.isEmpty()) {
             this.logger.error("Couldn't find USD Price");
@@ -36,7 +37,7 @@ public class PriceServiceImpl implements PriceService {
 
         var value = this.usdInteractor.getUsdValue();
 
-        this.repository.save(new Price(Price.USD_NAME, value));
+        this.repository.save(new Price(PriceTypes.USD, value));
 
         this.logger.info("USD Price updated");
     }

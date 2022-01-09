@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity @Table(name = "PRICES")
@@ -15,10 +13,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor @NoArgsConstructor
 public class Price {
 
-    public static final String USD_NAME = "USD";
-
-    @Id @NonNull
-    private String name;
+    @Id @Enumerated(EnumType.STRING)
+    private PriceTypes type;
 
     @NonNull
     private BigDecimal price;
