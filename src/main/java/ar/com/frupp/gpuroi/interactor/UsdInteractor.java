@@ -38,6 +38,8 @@ public class UsdInteractor {
 
         var value = new BigDecimal(response.getBody().compra());
 
+        this.logger.debug("USD Value: {}", value);
+
         return value;
     }
 
