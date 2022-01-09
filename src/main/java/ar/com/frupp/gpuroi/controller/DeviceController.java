@@ -3,6 +3,7 @@ package ar.com.frupp.gpuroi.controller;
 import ar.com.frupp.gpuroi.model.DeviceJson;
 import ar.com.frupp.gpuroi.model.Paginated;
 import ar.com.frupp.gpuroi.model.UpdatePriceRequest;
+import ar.com.frupp.gpuroi.scraper.GpuPriceScraper;
 import ar.com.frupp.gpuroi.service.DeviceService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.Collection;
 public class DeviceController {
 
     private final DeviceService deviceService;
+    private final GpuPriceScraper priceScraper;
 
     @GetMapping
     public Paginated<DeviceJson> getDevices(@RequestParam(required = false, defaultValue = "0") Integer pageNumber) {
@@ -38,5 +40,10 @@ public class DeviceController {
     @PostMapping
     public void synchronize() {
        new Thread(this.deviceService::sync).start();
+    }
+
+    @PostMapping("/prices")
+    public void synchronizeDevicePrices() {
+        new Thread(this.priceScraper::scrape).start();
     }
 }
