@@ -1,10 +1,14 @@
 {
-  "name": "gpu-roi-front",
+  "name": "gpu-roi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gpu-roi-front": "file:./src/main/js",
+    "react-scripts": "5.0.0"
   },
   "scripts": {
-    "build": "cd ./src/main/js && npm run build"
+    "prebuild": "cd ./src/main/js && npm install",
+    "build": "cd ./src/main/js && npm run build",
+    "add-to-java": "cd ./src/main/js && npm run add-to-java"
   }
 }
