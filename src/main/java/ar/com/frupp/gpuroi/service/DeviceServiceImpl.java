@@ -88,8 +88,7 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     private BigDecimal getBtcPrice() {
-        //TODO: Save and find current price
-        return new BigDecimal(40000);
+        return this.priceService.findByType(PriceTypes.BTC).getPrice();
     }
 
     private BigDecimal getUsdPrice() {
