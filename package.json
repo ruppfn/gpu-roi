@@ -7,7 +7,7 @@
     "react-scripts": "5.0.0"
   },
   "scripts": {
-    "preinstall": "cd ./src/main/js && npm install",
+    "prebuild": "cd ./src/main/js && npm install",
     "build": "cd ./src/main/js && npm run build"
   }
 }
