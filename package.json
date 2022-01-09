@@ -1,0 +1,10 @@
+{
+  "name": "gpu-roi-front",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+  },
+  "scripts": {
+    "build": "cd ./src/main/js && npm run build"
+  }
+}
