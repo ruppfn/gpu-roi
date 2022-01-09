@@ -10,7 +10,7 @@ public interface DeviceService {
 
     Paginated<DeviceJson> findAll(Integer pageNumber);
 
-    DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs, BigDecimal daysToROI);
+    DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs);
 
     Paginated<DeviceJson> findAllWithoutPrice(Integer pageNumber);
 

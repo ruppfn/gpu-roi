@@ -30,7 +30,7 @@ public class DeviceController {
     @PutMapping
     public DeviceJson updatePrice(@RequestBody UpdatePriceRequest updatePriceRequest) {
         return this.deviceService.updatePriceAndROI(
-                updatePriceRequest.deviceId(), updatePriceRequest.price(), updatePriceRequest.daysToROI()
+                updatePriceRequest.deviceId(), updatePriceRequest.price()
         );
     }
 

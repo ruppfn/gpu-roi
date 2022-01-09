@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.stream.Collectors;
 
 @Service @AllArgsConstructor
@@ -52,8 +53,8 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs, BigDecimal daysToROI) {
-        this.logger.info("Adding price ({}) and ROI ({}) for Device id {}", priceInArs, daysToROI, deviceId);
+    public DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs) {
+        this.logger.info("Adding price ({}) and ROI for Device id {}", priceInArs, deviceId);
         var optional = this.repository.findById(deviceId);
 
         if(optional.isEmpty()) {
@@ -61,15 +62,36 @@ public class DeviceServiceImpl implements DeviceService {
             return new DeviceJson();
         }
 
-        var device = optional.get();
+        final var device = optional.get();
+        final var roi = calculateRoi(device, priceInArs);
 
         device.setPriceInArs(priceInArs);
-        device.setDaysToROI(daysToROI);
+        device.setDaysToROI(roi);
         this.repository.save(device);
 
         this.logger.debug("Price and ROI saved");
 
         return DeviceMapper.toModel(device);
+    }
+
+    private BigDecimal calculateRoi(Device device, BigDecimal priceInArs) {
+        final var usdPrice = getUsdPrice();
+        final var btcPrice = getBtcPrice();
+        final var btcInArs = btcPrice.multiply(usdPrice);
+
+        final var profitInArs = device.getPaying().multiply(btcInArs);
+
+        return priceInArs.divide(profitInArs, 2, RoundingMode.HALF_UP);
+    }
+
+    private BigDecimal getBtcPrice() {
+        //TODO: Save and find current price
+        return new BigDecimal(40000);
+    }
+
+    private BigDecimal getUsdPrice() {
+        //TODO: Save and find current price
+        return new BigDecimal(205);
     }
 
     @Override
