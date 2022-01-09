@@ -28,6 +28,8 @@ public class DeviceServiceImpl implements DeviceService {
     private final DeviceRepository repository;
     private final NiceHashInteractor niceHashInteractor;
 
+    private final PriceService priceService;
+
     @Override
     public Paginated<DeviceJson> findAll(Integer pageNumber) {
         this.logger.info("Finding Devices page {}", pageNumber);
@@ -90,8 +92,7 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     private BigDecimal getUsdPrice() {
-        //TODO: Save and find current price
-        return new BigDecimal(205);
+        return this.priceService.findUsd().getPrice();
     }
 
     @Override
