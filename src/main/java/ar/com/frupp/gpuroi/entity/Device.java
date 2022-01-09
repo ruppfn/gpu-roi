@@ -24,7 +24,7 @@ public class Device {
     @Column(name = "POWER")
     private Integer power;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "device")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "device", fetch = FetchType.EAGER)
     private Set<DeviceSpeed> speeds;
 
     @NonNull
