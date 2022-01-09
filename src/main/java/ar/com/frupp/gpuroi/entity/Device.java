@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +38,9 @@ public class Device {
     @Column(name = "DAYS_TO_ROI", precision = 6, scale = 2)
     private BigDecimal daysToROI;
 
+    @Column(name = "LAST_UPDATE")
+    private LocalDateTime lastUpdate;
+
     public void addSpeed(DeviceSpeed speeds) {
         if (this.speeds == null) {
             this.speeds = new HashSet<>();
@@ -56,4 +60,7 @@ public class Device {
         this.daysToROI = daysToROI;
     }
 
+    public void setLastUpdate() {
+        this.lastUpdate = LocalDateTime.now();
+    }
 }
