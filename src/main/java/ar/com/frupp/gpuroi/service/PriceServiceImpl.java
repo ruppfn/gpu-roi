@@ -2,6 +2,7 @@ package ar.com.frupp.gpuroi.service;
 
 import ar.com.frupp.gpuroi.entity.Price;
 import ar.com.frupp.gpuroi.entity.PriceTypes;
+import ar.com.frupp.gpuroi.interactor.BinanceInteractor;
 import ar.com.frupp.gpuroi.interactor.UsdInteractor;
 import ar.com.frupp.gpuroi.repository.PriceRepository;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ public class PriceServiceImpl implements PriceService {
 
     private final PriceRepository repository;
     private final UsdInteractor usdInteractor;
+    private final BinanceInteractor binanceInteractor;
 
     @Override
     public Price findByType(PriceTypes type) {
@@ -43,9 +45,20 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
+    public void updateBtc() {
+        this.logger.info("Updating BTC Price");
+
+        var value = this.binanceInteractor.getBtcValue();
+        this.repository.save(new Price(PriceTypes.BTC, value));
+
+        this.logger.info("BTC Price updated");
+    }
+
+    @Override
     public void sync() {
         this.logger.info("Starting Prices synchronization");
         updateUsd();
+        updateBtc();
         this.logger.info("Prices synchronization finished");
     }
 }
