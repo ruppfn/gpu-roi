@@ -112,6 +112,12 @@ public class GpuPriceScraper {
 
     private int calculateAveragePrice(List<BigDecimal> prices) {
         var defaultOrMaxSize = Math.min(3, prices.size());
+
+        if (defaultOrMaxSize == 0) {
+            this.logger.info("Couldn't find prices for current device");
+            return 99999999;
+        }
+
         var relevantPrices = prices.subList(0, defaultOrMaxSize);
         var averagePrice = relevantPrices.stream().mapToInt(BigDecimal::intValue).sum() / defaultOrMaxSize;
 
