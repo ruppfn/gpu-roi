@@ -7,6 +7,8 @@ import ar.com.frupp.gpuroi.service.DeviceService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 
 @RestController
 @RequestMapping("/api/devices")
@@ -22,9 +24,8 @@ public class DeviceController {
     }
 
     @GetMapping("/withoutPrice")
-    public Paginated<DeviceJson> getDevicesWithoutPrice(
-            @RequestParam(required = false, defaultValue = "0") Integer pageNumber) {
-        return this.deviceService.findAllWithoutPrice(pageNumber);
+    public Collection<DeviceJson> getDevicesWithoutPrice() {
+        return this.deviceService.findAllWithoutPrice();
     }
 
     @PutMapping

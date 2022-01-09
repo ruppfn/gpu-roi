@@ -5,6 +5,7 @@ import ar.com.frupp.gpuroi.model.DeviceJson;
 import ar.com.frupp.gpuroi.model.Paginated;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 public interface DeviceService extends Synchronizable {
 
@@ -12,7 +13,7 @@ public interface DeviceService extends Synchronizable {
 
     DeviceJson updatePriceAndROI(String deviceId, BigDecimal priceInArs);
 
-    Paginated<DeviceJson> findAllWithoutPrice(Integer pageNumber);
+    Collection<DeviceJson> findAllWithoutPrice();
 
     void save(Device device);
 

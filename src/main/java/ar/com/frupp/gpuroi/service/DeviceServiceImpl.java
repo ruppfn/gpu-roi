@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
@@ -45,15 +46,14 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public Paginated<DeviceJson> findAllWithoutPrice(Integer pageNumber) {
-        this.logger.info("Finding Devices without price page {}", pageNumber);
-        var sort = Sort.by(Sort.Direction.DESC, SORT_BY_COLUMN);
-        var pageRequest = PageRequest.of(pageNumber, PAGE_SIZE, sort);
+    public Collection<DeviceJson> findAllWithoutPrice() {
+        this.logger.info("Finding Devices without price");
 
-        var page = this.repository.findAllByPriceInArsIsNull(pageRequest);
+        var devices = this.repository.findAllByPriceInArsIsNull();
 
-        var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
-        return new Paginated<>(page.getNumber(), page.getTotalElements(), jsonList);
+        this.logger.debug("Found {} devices", devices.size());
+
+        return devices.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
     }
 
     @Override
