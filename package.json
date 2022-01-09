@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gpu-roi-front": "file:./src/main/js"
   },
   "scripts": {
     "build": "cd ./src/main/js && npm run build"
