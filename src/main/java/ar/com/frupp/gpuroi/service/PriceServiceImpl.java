@@ -18,12 +18,12 @@ public class PriceServiceImpl implements PriceService {
     private final UsdInteractor usdInteractor;
 
     @Override
-    public Price findUsd() {
+    public Price findByType(PriceTypes type) {
         this.logger.info("Finding USD Price");
-        var optional = this.repository.findByType(PriceTypes.USD);
+        var optional = this.repository.findByType(type);
 
         if (optional.isEmpty()) {
-            this.logger.error("Couldn't find USD Price");
+            this.logger.error("Couldn't find Type");
             //TODO: Make custom exception
             throw new RuntimeException("Couldn't find USD Price");
         }

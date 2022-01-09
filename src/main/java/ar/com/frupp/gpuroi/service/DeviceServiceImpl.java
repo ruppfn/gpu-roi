@@ -1,6 +1,7 @@
 package ar.com.frupp.gpuroi.service;
 
 import ar.com.frupp.gpuroi.entity.Device;
+import ar.com.frupp.gpuroi.entity.PriceTypes;
 import ar.com.frupp.gpuroi.interactor.NiceHashInteractor;
 import ar.com.frupp.gpuroi.mapper.DeviceMapper;
 import ar.com.frupp.gpuroi.model.DeviceJson;
@@ -92,7 +93,7 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     private BigDecimal getUsdPrice() {
-        return this.priceService.findUsd().getPrice();
+        return this.priceService.findByType(PriceTypes.USD).getPrice();
     }
 
     @Override
