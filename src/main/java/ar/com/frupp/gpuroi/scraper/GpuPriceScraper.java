@@ -115,7 +115,7 @@ public class GpuPriceScraper {
 
         if (defaultOrMaxSize == 0) {
             this.logger.info("Couldn't find prices for current device");
-            return 99999999;
+            return 999999;
         }
 
         var relevantPrices = prices.subList(0, defaultOrMaxSize);
