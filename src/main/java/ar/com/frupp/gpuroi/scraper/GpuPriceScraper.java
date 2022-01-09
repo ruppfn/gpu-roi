@@ -92,6 +92,7 @@ public class GpuPriceScraper {
         this.logger.debug("Finding prices");
         var prices = new LinkedList<BigDecimal>();
         try {
+            page.getElementById("store-highlighted").remove();
             var elements = page.getElementsByAttributeValue("itemtype", "http://schema.org/Product");
             for (var element : elements) {
                 var priceStr = element.getElementsByAttributeValue("itemprop", "price").attr("content");
