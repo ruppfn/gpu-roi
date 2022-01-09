@@ -32,28 +32,31 @@ function DeviceTable() {
     }, [pageNumber, setDevices, setPageNumber, setTotalElements]);
 
     const columns = [
-        {field: "name", headerName: "Name"},
-        {field: "power", headerName: "Power", renderCell: cell => powerFormat(cell) },
-        {field: "paying", headerName: "BTC per Day"},
-        {field: "priceInArs", headerName: "Price in ARS"},
-        {field: "daysToROI", headerName: "Days to ROI"}
+        {field: "name", headerName: "Name", flex: 4},
+        {field: "power", headerName: "Power", flex: 1, renderCell: cell => powerFormat(cell) },
+        {field: "paying", headerName: "BTC per Day", flex: 2},
+        {field: "priceInArs", headerName: "Price in ARS", flex: 1},
+        {field: "daysToROI", headerName: "Days to ROI", flex: 1}
     ];
 
     const powerFormat = row => <div>{row.value}&nbsp;<b>W</b></div>;
 
     return (
-        <div style={{ height: '100vh', width: '100%' }}>
-            <DataGrid
-                pagination
-                paginationMode="server"
-                rows={devices}
-                rowCount={totalElements}
-                columns={columns}
-                pageSize={pageSize}
-                page={pageNumber}
-                onPageChange={newPageNumber => setPageNumber(newPageNumber)}
-                sortModel={sortModel}
-            />
+        <div style={{display: 'flex', height: '100%'}}>
+            <div style={{ flexGrow: 1 }}>
+                <DataGrid
+                    autoHeight
+                    pagination
+                    paginationMode="server"
+                    rows={devices}
+                    rowCount={totalElements}
+                    columns={columns}
+                    pageSize={pageSize}
+                    page={pageNumber}
+                    onPageChange={newPageNumber => setPageNumber(newPageNumber)}
+                    sortModel={sortModel}
+                />
+            </div>
         </div>
     );
 }
