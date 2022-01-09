@@ -101,7 +101,7 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public void sync() {
-        this.logger.info("Starting synchronization");
+        this.logger.info("Starting devices synchronization");
 
         var devices = this.niceHashInteractor.findDevices().stream().filter(DeviceJson::isGpu)
                 .map(DeviceMapper::toEntity).collect(Collectors.toSet());
@@ -110,6 +110,6 @@ public class DeviceServiceImpl implements DeviceService {
 
         this.repository.saveAll(devices);
 
-        this.logger.info("Synchronization finished");
+        this.logger.info("Devices synchronization finished");
     }
 }
