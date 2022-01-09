@@ -44,6 +44,10 @@ public class Device {
         this.speeds.add(speeds);
     }
 
+    public void setPaying(BigDecimal paying) {
+        this.paying = paying;
+    }
+
     public void setPriceInArs(BigDecimal priceInArs) {
         this.priceInArs = priceInArs;
     }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 @Service @AllArgsConstructor
@@ -104,12 +105,25 @@ public class DeviceServiceImpl implements DeviceService {
     public void sync() {
         this.logger.info("Starting devices synchronization");
 
-        var devices = this.niceHashInteractor.findDevices().stream().filter(DeviceJson::isGpu)
+        var savedDevicesMap = new HashMap<String, Device>();
+
+        this.repository.findAll().forEach(device -> savedDevicesMap.put(device.getId(), device));
+
+        var updatedDevices = this.niceHashInteractor.findDevices().stream().filter(DeviceJson::isGpu)
                 .map(DeviceMapper::toEntity).collect(Collectors.toSet());
 
-        this.logger.debug("Found {} devices", devices.size());
+        this.logger.debug("Found {} devices", updatedDevices.size());
 
-        this.repository.saveAll(devices);
+        for (Device updatedDevice: updatedDevices) {
+            var savedDevice = savedDevicesMap.get(updatedDevice.getId());
+            savedDevice.setPaying(updatedDevice.getPaying());
+            if (savedDevice.getPriceInArs() != null) {
+                this.logger.debug("Updating ROI for device id {}", savedDevice.getId());
+                savedDevice.setDaysToROI(calculateRoi(savedDevice, savedDevice.getPriceInArs()));
+            }
+        }
+
+        this.repository.saveAll(savedDevicesMap.values());
 
         this.logger.info("Devices synchronization finished");
     }
