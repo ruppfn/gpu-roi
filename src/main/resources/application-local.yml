@@ -3,6 +3,7 @@ app:
     devices: https://api2.nicehash.com/main/api/v2/public/profcalc/devices
     usd: https://api-dolar-argentina.herokuapp.com/api/dolarblue
     binance: https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT
+    gpus: https://www.hardgamers.com.ar/search?text=
 
 logging:
   level:
