@@ -15,14 +15,13 @@ function DeviceTable() {
     const [devices, setDevices] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
+    const [pageSize, setPageSize] = useState(0);
     const sortModel = [
         {
             field: "paying",
             sort: "desc"
         }
     ];
-
-    const pageSize = 10;
 
     const handleRowChange = useCallback(
         async (params) => {
@@ -61,8 +60,9 @@ function DeviceTable() {
             setDevices(data.content);
             setPageNumber(data.pageNumber);
             setTotalElements(data.totalElements);
+            setPageSize(data.pageSize);
         });
-    }, [pageNumber, setDevices, setPageNumber, setTotalElements]);
+    }, [pageNumber, setDevices, setPageNumber, setTotalElements, setPageSize]);
 
     const columns = [
         {field: "name", headerName: "Name", flex: 4},
