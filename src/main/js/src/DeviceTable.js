@@ -19,7 +19,7 @@ function DeviceTable() {
     const sortModel = [
         {
             field: "daysToROI",
-            sort: "ASC"
+            sort: "asc"
         }
     ];
 
