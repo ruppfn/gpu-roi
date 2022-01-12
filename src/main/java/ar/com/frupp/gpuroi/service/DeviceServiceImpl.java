@@ -41,7 +41,9 @@ public class DeviceServiceImpl implements DeviceService {
         var pageRequest = PageRequest.of(pageNumber, DEFAULT_PAGE_SIZE, sort);
         var page = this.repository.findAll(pageRequest);
 
-        var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
+        var jsonList = page.stream()
+                .filter(device -> device.getPriceInArs().intValue() != Device.NOT_FOUND_PRICE)
+                .map(DeviceMapper::toModel).collect(Collectors.toList());
         return new Paginated<>(page.getNumber(), page.getTotalElements(), page.getNumberOfElements(), jsonList);
     }
 
