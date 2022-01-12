@@ -13,6 +13,8 @@ import java.util.Set;
 @NoArgsConstructor @Getter @ToString
 public class Device {
 
+    public static final Integer NOT_FOUND_PRICE = 999999;
+
     @NonNull
     @Id @Column(name = "DEVICE_ID")
     private String id;

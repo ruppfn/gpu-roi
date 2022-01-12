@@ -1,5 +1,6 @@
 package ar.com.frupp.gpuroi.scraper;
 
+import ar.com.frupp.gpuroi.entity.Device;
 import ar.com.frupp.gpuroi.model.DeviceJson;
 import ar.com.frupp.gpuroi.service.DeviceService;
 import org.jsoup.Jsoup;
@@ -115,7 +116,7 @@ public class GpuPriceScraper {
 
         if (defaultOrMaxSize == 0) {
             this.logger.info("Couldn't find prices for current device");
-            return 999999;
+            return Device.NOT_FOUND_PRICE;
         }
 
         var relevantPrices = prices.subList(0, defaultOrMaxSize);
