@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service @AllArgsConstructor
 public class DeviceServiceImpl implements DeviceService {
 
-    private static final Integer PAGE_SIZE = 10;
+    private static final Integer DEFAULT_PAGE_SIZE = 999;
     private static final String SORT_BY_COLUMN = "paying";
 
     private final Logger logger = LoggerFactory.getLogger(DeviceServiceImpl.class);
@@ -38,11 +38,11 @@ public class DeviceServiceImpl implements DeviceService {
         this.logger.info("Finding Devices page {}", pageNumber);
 
         var sort = Sort.by(Sort.Direction.DESC, SORT_BY_COLUMN);
-        var pageRequest = PageRequest.of(pageNumber, PAGE_SIZE, sort);
+        var pageRequest = PageRequest.of(pageNumber, DEFAULT_PAGE_SIZE, sort);
         var page = this.repository.findAll(pageRequest);
 
         var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
-        return new Paginated<>(page.getNumber(), page.getTotalElements(), PAGE_SIZE, jsonList);
+        return new Paginated<>(page.getNumber(), page.getTotalElements(), page.getNumberOfElements(), jsonList);
     }
 
     @Override
