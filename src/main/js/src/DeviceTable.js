@@ -18,8 +18,8 @@ function DeviceTable() {
     const [pageSize, setPageSize] = useState(0);
     const sortModel = [
         {
-            field: "paying",
-            sort: "desc"
+            field: "daysToROI",
+            sort: "ASC"
         }
     ];
 
