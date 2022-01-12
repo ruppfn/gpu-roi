@@ -42,7 +42,7 @@ public class DeviceServiceImpl implements DeviceService {
         var page = this.repository.findAll(pageRequest);
 
         var jsonList = page.stream().map(DeviceMapper::toModel).collect(Collectors.toList());
-        return new Paginated<>(page.getNumber(), page.getTotalElements(), jsonList);
+        return new Paginated<>(page.getNumber(), page.getTotalElements(), PAGE_SIZE, jsonList);
     }
 
     @Override
