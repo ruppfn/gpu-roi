@@ -128,7 +128,7 @@ public class GpuPriceScraper {
     }
 
     private void updatePrice(DeviceJson device, int price) {
-        this.logger.debug("Updating price (${}) for device id: {}", price, device.getId());
+        this.logger.debug("Updating price (${}) for device: {}", price, device.getName());
 
         this.deviceService.updatePriceAndROI(device.getId(), BigDecimal.valueOf(price));
     }
