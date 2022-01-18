@@ -34,7 +34,7 @@
     <a href="https://github.com/ruppfn/gpu-roi"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/ruppfn/gpu-roi">View Demo</a>
+    <a href="https://gpu-roi.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/ruppfn/gpu-roi/issues">Report Bug</a>
     ·
