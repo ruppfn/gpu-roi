@@ -35,3 +35,9 @@ build/
 /src/main/resources/templates/index.html
 
 /node_modules/
+
+# package directories
+jspm_packages
+
+# Serverless directories
+.serverless
