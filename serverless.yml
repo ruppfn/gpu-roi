@@ -1,0 +1,51 @@
+service: gpu-roi
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+functions:
+  get-devices-lambda:
+    handler: serverless/getDevices.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+resources:
+  Resources:
+    DevicesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Devices
+        BillingMode: PROVISIONED
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        AttributeDefinitions:
+          - AttributeName: DeviceId
+            AttributeType: S
+          - AttributeName: Paying
+            AttributeType: N
+        KeySchema:
+          - AttributeName: DeviceId
+            KeyType: HASH
+          - AttributeName: Paying
+            KeyType: RANGE
+
+    PricesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Prices
+        BillingMode: PROVISIONED
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 2
+        AttributeDefinitions:
+          - AttributeName: Type
+            AttributeType: S
+        KeySchema:
+          - AttributeName: Type
+            KeyType: HASH
