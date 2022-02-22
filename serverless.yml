@@ -12,10 +12,16 @@ provider:
       - Effect: Allow
         Action:
           - dynamodb:PutItem
+          - dynamodb:GetItem
+          - dynamodb:Query
+          - dynamodb:BatchWriteItem
         Resource:
-          Fn::GetAtt:
+          - Fn::GetAtt:
             - PricesTable
             - Arn
+          - Fn::GetAtt:
+              - DevicesTable
+              - Arn
 
 
 functions:
@@ -29,12 +35,10 @@ functions:
     environment:
       BTC_URL: "https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT"
 
-  get-devices-lambda:
-    handler: serverless/src/getDevices.handler
-    events:
-      - httpApi:
-          path: /api/devices
-          method: get
+  import-devices-lambda:
+    handler: serverless/src/handlers/importDevices.handler
+    environment:
+      DEVICES_URL: "https://api2.nicehash.com/main/api/v2/public/profcalc/devices"
 
 resources:
   Resources:
