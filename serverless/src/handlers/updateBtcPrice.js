@@ -1,7 +1,7 @@
 "use strict";
 
-const axios = require("axios");
 const AWS = require("aws-sdk");
+const { getBtcPrice } = require("../utils/getBtcPrice");
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
@@ -35,11 +35,4 @@ module.exports.handler = async () => {
             2
         ),
     };
-};
-
-const getBtcPrice = async (url) => {
-    const res = await axios.get(url);
-    const { price } = res.data;
-
-    return parseFloat(price);
 };
