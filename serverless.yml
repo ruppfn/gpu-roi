@@ -29,9 +29,6 @@ functions:
     handler: serverless/src/handlers/updateBtcPrice.handler
     events:
       - schedule: rate(2 hours)
-      - httpApi:
-          path: /api/btc
-          method: get
     environment:
       BTC_URL: "https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT"
 
