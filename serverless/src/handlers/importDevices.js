@@ -61,9 +61,9 @@ const convertGpuToRequiredObject = (gpu) => {
     return {
         DeviceId: gpu.id,
         Paying: gpu.paying,
-        Name:gpu.name,
+        Name: gpu.name,
         Power: gpu.power,
-        Speeds: gpu.speeds
+        Speeds: JSON.parse(gpu.speeds)
     };
 }
 
