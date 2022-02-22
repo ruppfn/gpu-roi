@@ -1,12 +1,24 @@
 "use strict";
 
-module.exports.handler = async (event) => {
+const AWS = require("aws-sdk");
+
+const dynamo = new AWS.DynamoDB.DocumentClient();
+
+module.exports.handler = async () => {
+
+    const dynamoResponse = await dynamo.scan({
+        TableName: "Devices"
+    }).promise();
+
+    console.log(`Found ${dynamoResponse.Count} devices`);
+
+    const devices = dynamoResponse.Items;
+
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: "Go Serverless v3.0! Your function executed successfully!",
-        input: event,
+        devices
       },
       null,
       2

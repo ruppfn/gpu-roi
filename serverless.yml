@@ -15,6 +15,7 @@ provider:
           - dynamodb:GetItem
           - dynamodb:Query
           - dynamodb:BatchWriteItem
+          - dynamodb:Scan
         Resource:
           - Fn::GetAtt:
             - PricesTable
@@ -36,6 +37,14 @@ functions:
     handler: serverless/src/handlers/importDevices.handler
     environment:
       DEVICES_URL: "https://api2.nicehash.com/main/api/v2/public/profcalc/devices"
+
+  get-devices-lambda:
+    handler: serverless/src/handlers/getDevices.handler
+    events:
+      - httpApi:
+          path: /devices
+          method: GET
+
 
 resources:
   Resources:
