@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "gpu-roi-front": "file:./src/main/js",
-    "react-scripts": "5.0.0"
+    "axios": "^0.26.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.1078.0"
   },
   "scripts": {
     "prebuild": "cd ./src/main/js && npm install",
