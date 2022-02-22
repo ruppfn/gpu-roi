@@ -9,7 +9,7 @@ const BTC_URL = process.env.BTC_URL || "";
 
 console.log(`BTC_URL: ${BTC_URL}`);
 
-module.exports.handler = async (event) => {
+module.exports.handler = async () => {
 
     const price = await getBtcPrice(BTC_URL);
 
