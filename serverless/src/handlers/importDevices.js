@@ -15,7 +15,7 @@ module.exports.handler = async () => {
 
     const {devices} = res.data;
 
-    const gpus = devices.filter(device => device.category !== "ASIC");
+    const gpus = devices.filter(device => device.category !== "ASIC" && device.paying > 0);
 
     const convertedGpus = gpus.map(gpu => convertGpuToRequiredObject(gpu));
 
