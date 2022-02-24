@@ -148,10 +148,10 @@ To get a local copy up and running follow these simple example steps.
 
 - Migrate to AWS Serverless (AWS Solutions Architect & Developer Associate practice)
   - Frontend in CloudFront
-  - Migrate MySQL to DynamoDB
+  - ~~Migrate MySQL to DynamoDB~~
   - Synchronization Lambdas
-    - USD & BTC Prices
-    - Devices
+    - ~~USD & BTC Prices~~
+    - ~~Devices~~
     - Devices prices
   - EventBridge rule to run lambdas
   - [Device Controller](src/main/java/ar/com/frupp/gpuroi/controller/DeviceController.java) lambdas
