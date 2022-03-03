@@ -1,7 +1,7 @@
 "use strict";
 
 const AWS = require("aws-sdk");
-const { getBtcPrice } = require("../useCases/getBtcPrice");
+const { getBtcPriceFromApi } = require("../useCases/getBtcPrice");
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
@@ -11,7 +11,7 @@ console.log(`BTC_URL: ${BTC_URL}`);
 
 module.exports.handler = async () => {
 
-    const price = await getBtcPrice(BTC_URL);
+    const price = await getBtcPriceFromApi(BTC_URL);
 
     const priceItem = {
         Type: "BTC",
