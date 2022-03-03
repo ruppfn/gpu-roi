@@ -1,7 +1,7 @@
 "use strict";
 
 const AWS = require("aws-sdk");
-const { getBtcPrice } = require("../utils/getBtcPrice");
+const { getBtcPrice } = require("../useCases/getBtcPrice");
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
