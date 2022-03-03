@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.26.0"
+    "axios": "^0.26.0",
+    "cheerio": "^1.0.0-rc.10"
   },
   "devDependencies": {
     "aws-sdk": "^2.1078.0"
