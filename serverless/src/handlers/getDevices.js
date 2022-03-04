@@ -1,18 +1,10 @@
 "use strict";
 
-const AWS = require("aws-sdk");
-
-const dynamo = new AWS.DynamoDB.DocumentClient();
+const { getDevicesFromDynamo } = require("../useCases/getDevices");
 
 module.exports.handler = async () => {
 
-    const dynamoResponse = await dynamo.scan({
-        TableName: "Devices"
-    }).promise();
-
-    console.log(`Found ${dynamoResponse.Count} devices`);
-
-    const devices = dynamoResponse.Items;
+    const devices = await getDevicesFromDynamo();
 
   return {
     statusCode: 200,
