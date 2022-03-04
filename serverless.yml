@@ -53,7 +53,7 @@ functions:
       DEVICES_URL: "https://api2.nicehash.com/main/api/v2/public/profcalc/devices"
 
   get-devices-lambda:
-    handler: serverless/src/handlers/getDevices.handler
+    handler: serverless/src/handlers/getDevicesLambda.handler
     events:
       - httpApi:
           path: /devices
