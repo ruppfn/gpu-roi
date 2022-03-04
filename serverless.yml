@@ -40,6 +40,13 @@ functions:
     environment:
       USD_URL: "https://api-dolar-argentina.herokuapp.com/api/dolarblue"
 
+  update-devices-prices-lambda:
+    handler: serverless/src/handlers/updateDevicesPricesLambda.handler
+    events:
+      - schedule: rate(1 day)
+    environment:
+      DEVICES_URL: "https://www.hardgamers.com.ar/search?text="
+
   import-devices-lambda:
     handler: serverless/src/handlers/importDevices.handler
     environment:
