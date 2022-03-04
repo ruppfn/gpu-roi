@@ -34,7 +34,7 @@ functions:
       BTC_URL: "https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT"
 
   update-usd-price-lambda:
-    handler: serverless/src/handlers/updateUsdPrice.handler
+    handler: serverless/src/handlers/updateUsdPriceLambda.handler
     events:
       - schedule: rate(1 day)
     environment:
