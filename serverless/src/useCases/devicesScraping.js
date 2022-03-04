@@ -5,11 +5,15 @@ const { avg } = require("../utils/math");
 module.exports.getAveragePriceForDevice = async (baseUrl, deviceName) => {
     const url = makeUrl(baseUrl, deviceName);
 
+    console.debug(`Start price scraping for device ${deviceName}`);
     const html = (await axios.get(url)).data;
 
     const prices = extractPricesFromHtml(html);
 
-    return avg(prices);
+    const price = avg(prices);
+    console.debug(`Found price: ${price} for Device ${deviceName}`);
+
+    return price;
 }
 
 const extractPricesFromHtml = (html) => {
