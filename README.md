@@ -149,11 +149,11 @@ To get a local copy up and running follow these simple example steps.
 - Migrate to AWS Serverless (AWS Solutions Architect & Developer Associate practice)
   - Frontend in CloudFront
   - ~~Migrate MySQL to DynamoDB~~
-  - Synchronization Lambdas
+  - ~~Synchronization Lambdas~~
     - ~~USD & BTC Prices~~
     - ~~Devices~~
-    - Devices prices
-  - EventBridge rule to run lambdas
+    - ~~Devices prices~~
+  - ~~EventBridge rule to run lambdas~~
   - [Device Controller](src/main/java/ar/com/frupp/gpuroi/controller/DeviceController.java) lambdas
 
 See the [open issues](https://github.com/ruppfn/gpu-roi/issues) for a full list of proposed features (and known issues).
