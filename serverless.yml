@@ -27,7 +27,7 @@ provider:
 
 functions:
   update-btc-price-lambda:
-    handler: serverless/src/handlers/updateBtcPrice.handler
+    handler: serverless/src/handlers/updateBtcPriceLambda.handler
     events:
       - schedule: rate(2 hours)
     environment:
