@@ -48,7 +48,7 @@ functions:
       DEVICES_URL: "https://www.hardgamers.com.ar/search?text="
 
   import-devices-lambda:
-    handler: serverless/src/handlers/importDevices.handler
+    handler: serverless/src/handlers/importDevicesLambda.handler
     environment:
       DEVICES_URL: "https://api2.nicehash.com/main/api/v2/public/profcalc/devices"
 
